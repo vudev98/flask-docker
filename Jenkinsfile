@@ -44,6 +44,14 @@ pipeline {
         sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
       }
     }
+        stage('deploy') {
+        steps {
+          sshagent(['ssh-remote-server']) {
+            sh 'ssh -o StrictHostKeyChecking=no -l root 10.0.0.17 touch test.txt'
+            sh "docker run -p 5000:5000 --name docker-flask -d nnvu187/flask-docker:latest"
+          }
+        }
+    }
   }
 
   post {
