@@ -46,6 +46,7 @@ pipeline {
     }
   
     stage('deploy') {
+      agent { node {label 'master'}}
       steps {
         sshagent(['ssh-remote-server']) {
           sh 'ssh -o StrictHostKeyChecking=no -l root 10.0.0.17 touch test.txt'
