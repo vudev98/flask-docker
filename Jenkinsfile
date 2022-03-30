@@ -53,8 +53,8 @@ pipeline {
         }
       }
     }
-
-  post {
+  }
+    post {
     success {
       echo "SUCCESSFUL"
     }
