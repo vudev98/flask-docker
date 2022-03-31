@@ -50,8 +50,8 @@ pipeline {
       steps {
         sshagent(['my-ssh-remote']) {
           sh 'ssh -o StrictHostKeyChecking=no -l nnvu187 10.0.0.17 touch test.txt'
-//           sh "docker stop docker-flask && docker rm docker-flask"
-//           sh "docker run -p 5000:5000 --name docker-flask -d nnvu187/flask-docker:latest"
+          sh "ssh -o StrictHostKeyChecking=no -l nnvu187 10.0.0.17 docker stop docker-flask && docker rm docker-flask"
+          sh "ssh -o StrictHostKeyChecking=no -l nnvu187 10.0.0.17 docker run -p 5000:5000 --name docker-flask -d nnvu187/flask-docker:latest"
         }
       }
     }
