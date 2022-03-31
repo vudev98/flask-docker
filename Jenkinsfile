@@ -49,7 +49,7 @@ pipeline {
       agent { node {label 'master'}}
       steps {        
         sshagent(['my-ssh-remote']) {
-        if ( ! "ssh -o StrictHostkeyChecking=no -l nnvu187 10.0.0.17 $(docker ps -a | grep docker-flask)") {
+        if ( ! "ssh -o StrictHostkeyChecking=no -l nnvu187 10.0.0.17 \$(docker ps -a | grep docker-flask)") {
           sh "ssh -o StrictHostkeyChecking=no -l nnvu187 10.0.0.17 docker run -p 5000:5000 --name docker-flask -d nnvu187/flask-docker:latest"
         }
           else {
