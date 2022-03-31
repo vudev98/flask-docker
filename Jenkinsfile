@@ -49,7 +49,7 @@ pipeline {
       agent { node {label 'master'}}
       steps {        
         sshagent(['my-ssh-remote']) {
-        if ( ! "$(docker ps -a | docker-flask)") {
+        if ( ! "$(docker ps -a | grep docker-flask)") {
           sh "docker run -p 5000:5000 --name docker-flask -d nnvu187/flask-docker:latest"
         }
           else {
